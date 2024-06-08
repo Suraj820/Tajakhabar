@@ -1,22 +1,37 @@
 package com.example.tajakhabar.presentation.onboarding
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.tajakhabar.presentation.Dimensions.IndicatorWidth
+import com.example.tajakhabar.presentation.Dimensions.MediumPadding2
+import com.example.tajakhabar.presentation.common.NewsButton
+import com.example.tajakhabar.presentation.common.NewsTextButton
+import com.example.tajakhabar.presentation.common.PageIndicator
 import com.example.tajakhabar.presentation.onboarding.compoenets.OnboardingPage
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnBoardingScreen(modifier: Modifier = Modifier) {
 
     Column(modifier = Modifier.fillMaxSize()) {
-        val pageState = rememberPagerState(initialPage = 0){
+        val pageState = rememberPagerState(initialPage = 0) {
             pages.size
         }
 
@@ -24,15 +39,20 @@ fun OnBoardingScreen(modifier: Modifier = Modifier) {
             derivedStateOf {
                 when (pageState.currentPage) {
                     0 -> {
-                        listOf("","Next")
+                        listOf("", "Next")
                     }
+
                     1 -> {
-                        listOf("Back","Next")
+                        listOf("Back", "Next")
                     }
+
                     2 -> {
                         listOf("Back", "Get Started")
                     }
-                    else -> { listOf("", "")}
+
+                    else -> {
+                        listOf("", "")
+                    }
                 }
             }
         }
@@ -40,6 +60,48 @@ fun OnBoardingScreen(modifier: Modifier = Modifier) {
         HorizontalPager(state = pageState) {
             OnboardingPage(page = pages[it])
         }
+        Spacer(modifier = Modifier.weight(1f))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MediumPadding2)
+                .navigationBarsPadding(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            PageIndicator(
+                pageSize = pages.size,
+                selectedPage = pageState.currentPage,
+                modifier = Modifier.width(IndicatorWidth)
+            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+
+                val scope = rememberCoroutineScope()
+                if (buttonState.value[0].isNotEmpty()) {
+                    NewsTextButton(text = buttonState.value[0], onClick = {
+                        scope.launch {
+                            pageState.animateScrollToPage(pageState.currentPage - 1)
+                        }
+
+
+                    })
+                }
+                NewsButton(text = buttonState.value[1], onClick = {
+                    scope.launch {
+                        if (pageState.currentPage == 3) {
+                            //TODO : navigate to home screen
+                        } else {
+                            pageState.animateScrollToPage(pageState.currentPage + 1)
+                        }
+                    }
+                }
+                )
+            }
+
+
+        }
+        Spacer(modifier = Modifier.weight(0.5f))
+
     }
 
 }
