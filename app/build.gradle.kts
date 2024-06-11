@@ -1,8 +1,9 @@
 plugins {
+    kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.kotlinAndroidKsp)
-    alias(libs.plugins.hiltAndroid)
+
+    alias(libs.plugins.google.dagger.hilt)
 }
 
 android {
@@ -51,6 +52,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -69,8 +74,8 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     //Dagger Hilt
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    implementation(libs.google.dagger.hilt)
+    kapt(libs.google.dagger.hilt.compiler)
 
 
 
