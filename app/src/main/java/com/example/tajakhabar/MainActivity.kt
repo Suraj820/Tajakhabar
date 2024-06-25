@@ -32,8 +32,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
@@ -41,20 +40,13 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
 
 
-        lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect{
-                Log.e("Suraj==>>", "onCreate: $it")
-            }
-        }
+
 
         setContent {
             TajaKhabarTheme {
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)){
 
-                    val viewModel :OnBoardingViewModel = hiltViewModel()
-                    OnBoardingScreen(
-                        event = viewModel::onEvent
-                    )
+
                 }
 
             }
