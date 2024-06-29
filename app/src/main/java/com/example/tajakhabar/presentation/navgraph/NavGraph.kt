@@ -33,7 +33,7 @@ fun NavGraph(
 
         navigation(
             route = Route.NewsNavigation.route,
-            startDestination = Route.AppStartNavigation.route
+            startDestination = Route.NewsNavigatorScreen.route
         ){
             composable( route = Route.NewsNavigatorScreen.route){
                 Text(text = "News Screen")

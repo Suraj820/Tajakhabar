@@ -5,18 +5,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.tajakhabar.domain.manager.useCase.AppEntryUseCases
 import com.example.tajakhabar.presentation.navgraph.Route
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val appEntryUseCases: AppEntryUseCases
 )  :ViewModel(){
     var splashCondition by mutableStateOf(true)
         private set
-    private var startDestination by mutableStateOf(Route.AppStartNavigation.route)
+    var startDestination by mutableStateOf(Route.AppStartNavigation.route)
         private  set
 
     init{
@@ -29,7 +33,7 @@ class MainViewModel @Inject constructor(
             delay(3000)
             splashCondition = false
 
-        }
+        }.launchIn(viewModelScope)
     }
 
 
