@@ -1,4 +1,4 @@
-package com.example.tajakhabar.domain.manager.useCase
+package com.example.tajakhabar.domain.useCase.appEntry
 
 import com.example.tajakhabar.domain.manager.LocalUserManager
 import kotlinx.coroutines.flow.Flow

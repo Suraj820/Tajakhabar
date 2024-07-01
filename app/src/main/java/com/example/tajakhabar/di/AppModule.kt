@@ -3,9 +3,9 @@ package com.example.tajakhabar.di
 import android.app.Application
 import com.example.tajakhabar.data.manager.LocalUserMangerImp
 import com.example.tajakhabar.domain.manager.LocalUserManager
-import com.example.tajakhabar.domain.manager.useCase.AppEntryUseCases
-import com.example.tajakhabar.domain.manager.useCase.ReadAppEntry
-import com.example.tajakhabar.domain.manager.useCase.SaveAppEntry
+import com.example.tajakhabar.domain.useCase.appEntry.AppEntryUseCases
+import com.example.tajakhabar.domain.useCase.appEntry.ReadAppEntry
+import com.example.tajakhabar.domain.useCase.appEntry.SaveAppEntry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
