@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     // Splash Screen API
     implementation(libs.androidx.core.splashscreen)
 
@@ -77,6 +78,18 @@ dependencies {
     implementation(libs.google.dagger.hilt)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.google.dagger.hilt.compiler)
+
+    //Accompanist
+    implementation(libs.accompanist.systemuicontroller)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //Paging
+    implementation(libs.androidx.paging.runtime)
+
+
 
 
 

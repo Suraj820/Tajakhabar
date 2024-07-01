@@ -1,11 +1,11 @@
-package com.example.tajakhabar.domain.manager.useCase
+package com.example.tajakhabar.domain.useCase.appEntry
 
 import com.example.tajakhabar.domain.manager.LocalUserManager
 import kotlinx.coroutines.flow.Flow
 
 class ReadAppEntry(private val localUserManager: LocalUserManager) {
 
-    suspend operator fun invoke():Flow<Boolean>{
+     operator fun invoke():Flow<Boolean>{
         return localUserManager.readAppEntry()
     }
 }

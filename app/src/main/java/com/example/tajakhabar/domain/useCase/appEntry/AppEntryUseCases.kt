@@ -1,4 +1,4 @@
-package com.example.tajakhabar.domain.manager.useCase
+package com.example.tajakhabar.domain.useCase.appEntry
 
 data class AppEntryUseCases(
     val readAppEntry: ReadAppEntry,
