@@ -32,7 +32,7 @@ fun ArticleCard(
                 .size(Dimensions.ArticleCardSize)
                 .clip(MaterialTheme.shapes.medium),
             contentScale = ContentScale.Crop,
-            model = ImageRequest.Builder(context = context ).data(article.urlToImage).build() ,
+            model = ImageRequest.Builder(context = context).data(article.urlToImage).build() ,
             contentDescription = null  )
     }
 
