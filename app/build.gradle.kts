@@ -77,6 +77,7 @@ dependencies {
     //Dagger Hilt
     implementation(libs.google.dagger.hilt)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.paging.compose.android)
     kapt(libs.google.dagger.hilt.compiler)
 
     //Accompanist
