@@ -2,7 +2,10 @@ package com.example.tajakhabar.presentation.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
@@ -16,7 +19,23 @@ fun ArticlesList(
     articles: LazyPagingItems<Article>,
     onArticleClick: (Article) -> Unit
 ) {
-
+    val handlePagingResult = handlePagingResult(articles = articles)
+    if (handlePagingResult) {
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(Dimensions.MediumPadding1),
+            contentPadding = PaddingValues(all = Dimensions.ExtraSmallPadding2)
+        ) {
+            items(count = articles.itemCount) { index ->
+                articles[index]?.let { article ->
+                    ArticleCard(
+                        article = article,
+                        onClick = { onArticleClick(article) }
+                    )
+                }
+            }
+        }
+    }
 }
 
 
