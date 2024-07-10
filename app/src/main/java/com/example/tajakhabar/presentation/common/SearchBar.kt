@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tajakhabar.R
 import com.example.tajakhabar.presentation.Dimensions.IconSize
+import com.example.tajakhabar.ui.theme.TajaKhabarTheme
 import kotlinx.coroutines.launch
 
 
@@ -72,7 +73,27 @@ fun SearchBar(
                   modifier = Modifier.size(IconSize),
                   tint = colorResource(id = R.color.body)
               )
-          }
+          },
+          placeholder = {
+              Text(text = "Search", style = MaterialTheme.typography.bodySmall, color = colorResource(
+                  id = R.color.placeholder
+              ))
+          },
+          shape = MaterialTheme.shapes.medium,
+          colors = TextFieldDefaults.textFieldColors(
+              containerColor = colorResource(id = R.color.input_background),
+              focusedTextColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
+              cursorColor =   if (isSystemInDarkTheme()) Color.White else Color.Black,
+              disabledIndicatorColor = Color.Transparent,
+              errorIndicatorColor = Color.Transparent,
+              focusedIndicatorColor = Color.Transparent,
+              unfocusedIndicatorColor = Color.Transparent
+          ),
+          singleLine = true,
+          keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+          keyboardActions = KeyboardActions (onSearch = {onSearch()}),
+          textStyle = MaterialTheme.typography.bodySmall,
+          interactionSource = interactionSource
       )
 
     }
@@ -89,5 +110,16 @@ fun Modifier.searchBarBoarder()= composed {
         )
     }else{
         this
+    }
+}
+
+@Preview (showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+@Preview (showBackground = true)
+@Composable
+fun SearchBarPreview() {
+    TajaKhabarTheme {
+        SearchBar(text = "", readOnly =  false, onValueChange = { }) {
+            
+        }
     }
 }
