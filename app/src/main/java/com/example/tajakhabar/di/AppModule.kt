@@ -11,6 +11,7 @@ import com.example.tajakhabar.domain.useCase.appEntry.ReadAppEntry
 import com.example.tajakhabar.domain.useCase.appEntry.SaveAppEntry
 import com.example.tajakhabar.domain.useCase.news.GetNews
 import com.example.tajakhabar.domain.useCase.news.NewsUseCases
+import com.example.tajakhabar.domain.useCase.news.SearchNews
 import com.example.tajakhabar.utils.Constant.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -56,7 +57,9 @@ object AppModule {
     @Singleton
     fun providesNewsUseCases(newsRepository: NewsRepository):NewsUseCases{
         return NewsUseCases(
-            getNews = GetNews(newsRepository = newsRepository)
+            getNews = GetNews(newsRepository = newsRepository),
+            searchNews = SearchNews(newsRepository =  newsRepository)
+
         )
     }
 

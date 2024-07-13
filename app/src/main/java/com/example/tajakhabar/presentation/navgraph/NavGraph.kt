@@ -15,6 +15,8 @@ import com.example.tajakhabar.presentation.home.HomeScreen
 import com.example.tajakhabar.presentation.home.HomeViewModel
 import com.example.tajakhabar.presentation.onboarding.OnBoardingScreen
 import com.example.tajakhabar.presentation.onboarding.OnBoardingViewModel
+import com.example.tajakhabar.presentation.search.SearchScreen
+import com.example.tajakhabar.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -40,10 +42,8 @@ fun NavGraph(
             startDestination = Route.NewsNavigatorScreen.route
         ){
             composable( route = Route.NewsNavigatorScreen.route){
-                val viewModel:HomeViewModel = hiltViewModel()
-                val articles  = viewModel.news.collectAsLazyPagingItems()
-                Log.e("Suraj==>>", "articles: "+articles.itemCount )
-                HomeScreen(articles = articles, navigation = {} )
+                val viewModel:SearchViewModel = hiltViewModel()
+                SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
             }
         }
     }

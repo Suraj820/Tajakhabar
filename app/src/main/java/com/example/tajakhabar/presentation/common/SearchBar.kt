@@ -45,7 +45,7 @@ fun SearchBar(
     text:String,
     readOnly:Boolean,
     onClick:(()->Unit)?= null,
-    onValueChange:()->Unit,
+    onValueChange:(String)->Unit,
     onSearch:()->Unit
 ) {
 
@@ -65,7 +65,7 @@ fun SearchBar(
               .searchBarBoarder(),
           value = text,
           readOnly = readOnly,
-          onValueChange = {onValueChange.invoke()},
+          onValueChange = {onValueChange.invoke(it)},
           leadingIcon ={
               Icon(
                   painter = painterResource(id = R.drawable.ic_search),
