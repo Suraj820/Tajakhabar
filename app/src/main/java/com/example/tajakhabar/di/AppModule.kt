@@ -18,6 +18,7 @@ import com.example.tajakhabar.domain.useCase.news.GetNews
 import com.example.tajakhabar.domain.useCase.news.InsertArticle
 import com.example.tajakhabar.domain.useCase.news.NewsUseCases
 import com.example.tajakhabar.domain.useCase.news.SearchNews
+import com.example.tajakhabar.domain.useCase.news.SelectArticle
 import com.example.tajakhabar.domain.useCase.news.SelectArticles
 import com.example.tajakhabar.utils.Constant.BASE_URL
 import com.example.tajakhabar.utils.Constant.DATA_BASE_NAME
@@ -72,7 +73,8 @@ object AppModule {
             searchNews = SearchNews(newsRepository =  newsRepository),
             insertArticle = InsertArticle(newsDao),
             deleteArticle = DeleteArticle(newsDao),
-            selectArticles = SelectArticles(newsDao)
+            selectArticles = SelectArticles(newsDao),
+            selectArticle = SelectArticle(newsDao)
         )
     }
 
@@ -93,6 +95,8 @@ object AppModule {
     fun provideNewsDAO(newsDatabase: NewsDatabase):NewsDao{
         return newsDatabase.newsDao
     }
+
+
 
 
 }

@@ -1,7 +1,6 @@
 package com.example.tajakhabar.presentation.detail
 
 import android.content.Intent
-import android.content.IntentSender
 import android.content.res.Configuration
 import android.net.Uri
 import androidx.compose.foundation.background
@@ -20,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -65,7 +63,7 @@ fun DetailScreen(
                     context.startActivity(intent)
                 }
             },
-            onBookmarkClick = { event(DetailsEvent.SaveArticleEvent) },
+            onBookmarkClick = { event(DetailsEvent.UpsertDeleteArticle(article)) },
             onBackClick = navigateUp
         )
 
