@@ -32,7 +32,7 @@ import com.example.tajakhabar.presentation.navgraph.Route
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigation:(String)-> Unit) {
+fun HomeScreen(articles: LazyPagingItems<Article>, navigationToSearch:()-> Unit, navigationToDetail:(Article)-> Unit) {
     val title by remember {
         derivedStateOf {
             if (articles.itemCount > 10){
@@ -68,7 +68,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigation:(String)-> Unit) {
             readOnly = true,
             onValueChange = {  },
             onClick = {
-                      navigation(Route.SearchScreen.route)
+                      navigationToSearch()
             },
             onSearch = {}
         )
@@ -90,7 +90,8 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigation:(String)-> Unit) {
             modifier = Modifier.padding(horizontal = Dimensions.MediumPadding1),
             articles = articles,
             onArticleClick ={
-            navigation(Route.DeatilScreen.route)}
+            navigationToDetail(it)
+            }
         )
 
 

@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.Navigator
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.tajakhabar.domain.model.Article
 import com.example.tajakhabar.presentation.Dimensions
 import com.example.tajakhabar.presentation.common.ArticlesList
 import com.example.tajakhabar.presentation.common.SearchBar
@@ -21,7 +21,7 @@ fun SearchScreen(
     modifier: Modifier = Modifier,
     state: SearchState,
     event: (SearchEvent)->Unit,
-    navigate:(String)-> Unit
+    navigateToDetails:(Article)-> Unit
 ) {
     Column(
         modifier = Modifier
@@ -40,7 +40,7 @@ fun SearchScreen(
         Spacer(modifier = Modifier.height(Dimensions.MediumPadding1))
         state.articles?.let {
             val artists = it.collectAsLazyPagingItems()
-            ArticlesList(articles = artists, onArticleClick = {navigate(Route.DeatilScreen.route) })
+            ArticlesList(articles = artists, onArticleClick = {navigateToDetails(it) })
         }
 
     }

@@ -3,7 +3,6 @@ package com.example.tajakhabar.presentation.bookmarks
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -23,7 +22,7 @@ import com.example.tajakhabar.presentation.navgraph.Route
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate:(String)-> Unit
+    navigateToDetail:(Article)-> Unit
 ) {
     Column(
         modifier = Modifier
@@ -43,7 +42,7 @@ fun BookmarkScreen(
         Spacer(modifier = Modifier.height(Dimensions.MediumPadding1))
         
         ArticlesList(articles = state.articles, onArticleClick = {
-            navigate(Route.DeatilScreen.route)
+            navigateToDetail(it)
         } )
         
     }

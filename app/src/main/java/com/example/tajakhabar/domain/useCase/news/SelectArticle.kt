@@ -2,11 +2,12 @@ package com.example.tajakhabar.domain.useCase.news
 
 import com.example.tajakhabar.data.local.NewsDao
 import com.example.tajakhabar.domain.model.Article
+import com.example.tajakhabar.domain.repository.NewsRepository
 
 class SelectArticle (
-    private val dao : NewsDao
+    private val newsRepository: NewsRepository
 ) {
     suspend operator fun invoke(url: String):Article?{
-       return dao.getArticle(url)
+       return newsRepository.selectedArticle(url)
     }
 }
