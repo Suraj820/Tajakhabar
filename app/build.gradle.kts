@@ -2,7 +2,7 @@ plugins {
     kotlin("kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-
+    id("kotlin-parcelize")
     alias(libs.plugins.google.dagger.hilt)
 }
 
@@ -92,6 +92,15 @@ dependencies {
 
     //Coil
     implementation(libs.coil)
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+
+
+
 
 
 

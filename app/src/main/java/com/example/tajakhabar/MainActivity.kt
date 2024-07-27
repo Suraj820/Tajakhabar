@@ -16,10 +16,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Insert
+import com.example.tajakhabar.data.local.NewsDao
+import com.example.tajakhabar.domain.model.Article
+import com.example.tajakhabar.domain.model.Source
 import com.example.tajakhabar.presentation.navgraph.NavGraph
 import com.example.tajakhabar.ui.theme.TajaKhabarTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
