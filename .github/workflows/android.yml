@@ -25,3 +25,4 @@ jobs:
         with:
           name: apk
           path: app/build/outputs/apk/release/*.apk
+          distribution: 'latest'  # Replace with your desired distribution
